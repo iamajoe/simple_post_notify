@@ -16,6 +16,7 @@ DEBUG=true go run .
 ```
 ENV                 # development | production
 DEBUG               # true | false
+ALLOWED_ORIGINS     # "http://*;https://*"
 
 TELEGRAM_ENABLE     # true | false
 TELEGRAM_ID         # <telegram_chat_id>

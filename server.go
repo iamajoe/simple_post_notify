@@ -16,14 +16,6 @@ func setEndpoints(mux *chi.Mux) {
 	mux.Route("/notify", getNotifyEndpoints())
 }
 
-func AllowOriginFunc(r *http.Request, origin string) bool {
-	// if origin == "http://example.com" {
-	// 	return true
-	// }
-	// return false
-	return true
-}
-
 func getRouter() *chi.Mux {
 	r := chi.NewRouter()
 
@@ -34,9 +26,8 @@ func getRouter() *chi.Mux {
 	r.Use(middleware.NoCache)
 	r.Use(middleware.Timeout(60 * time.Second))
 
-	// TODO: should limit cors a bit more
 	r.Use(cors.Handler(cors.Options{
-		AllowOriginFunc:    AllowOriginFunc,
+		AllowedOrigins:     GetConfig().AllowedOrigins,
 		AllowedMethods:     []string{"HEAD", "GET", "POST", "OPTIONS"},
 		AllowedHeaders:     []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"}, // []string{"*"}, //
 		ExposedHeaders:     []string{"Link"},
