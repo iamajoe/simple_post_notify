@@ -29,16 +29,16 @@ func GetConfig() configType {
 		env = "testing"
 	}
 
-  //set a default for origins
+	//set a default for origins
 	origins := ConvertEnvToStringArr(os.Getenv("ALLOWED_ORIGINS"))
 	if len(origins) == 0 {
 		origins = append(origins, "*")
 	}
 
 	return configType{
-		Env:   env,
-		Debug: ConvertEnvToBool(os.Getenv("DEBUG")),
-    AllowedOrigins: origins,
+		Env:            env,
+		Debug:          ConvertEnvToBool(os.Getenv("DEBUG")),
+		AllowedOrigins: origins,
 
 		TelegramEnable: ConvertEnvToBool(os.Getenv("TELEGRAM_ENABLE")),
 		TelegramId:     os.Getenv("TELEGRAM_ID"),
