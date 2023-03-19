@@ -3,8 +3,31 @@
 > A simple server to handle a post and notify to one of the available modules
 
 ***
+### Usage (HTTP)
 
-#### Run
+#### Check status
+
+```
+GET: /status
+```
+
+#### Send a notification message
+
+Modules available: 
+- telegram
+
+```
+POST: /notify/send
+BODY: 
+{
+  msg: "Hey! A notification!",
+  mod: "telegram"
+}
+```
+
+***
+
+### Run
 
 ```sh
 go get .
@@ -23,7 +46,7 @@ TELEGRAM_ID         # <telegram_chat_id>
 TELEGRAM_SECRET     # <telegram_chat_secret>
 ```
 
-#### Build with docker
+### Build with docker
 
 ```sh
 docker build -t simple_post_notify:latest --build-arg TELEGRAM_ENABLE=true --build-arg TELEGRAM_ID=example_id --build-arg TELEGRAM_SECRET=shh_secret .
